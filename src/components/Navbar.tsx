@@ -14,12 +14,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll while the mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
   return (
@@ -28,28 +25,18 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled
-          ? "border-b border-line/80 bg-ink/70 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
+        scrolled ? "border-b border-line/80 bg-ink/70 backdrop-blur-xl" : "border-b border-transparent bg-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-        <a
-          href="/"
-          className="font-display text-xl font-bold tracking-tight text-bone"
-        >
-          HIVE
-          <span className="text-amber">.</span>
+        <a href="/" className="font-display text-xl font-bold tracking-tight text-bone">
+          HIVE<span className="text-amber">.</span>
         </a>
 
-        {/* Desktop nav */}
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.filter((link) => !link.isCta).map((link) => (
             <li key={link.label}>
-              <a
-                href={link.href}
-                className="group relative font-body text-sm font-medium text-mute transition-colors duration-200 hover:text-bone"
-              >
+              <a href={link.href} className="group relative font-body text-sm font-medium text-mute transition-colors duration-200 hover:text-bone">
                 {link.label}
                 <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-amber transition-all duration-300 group-hover:w-full" />
               </a>
@@ -69,7 +56,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile toggle */}
         <button
           type="button"
           onClick={() => setMenuOpen((open) => !open)}
@@ -81,7 +67,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu panel */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -94,14 +79,10 @@ export default function Navbar() {
             <ul className="flex flex-col gap-1 px-6 py-4">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a
+                  
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className={`block rounded-lg px-3 py-3 font-display text-sm font-semibold ${
-                      link.isCta
-                        ? "text-amber"
-                        : "text-bone/90 hover:text-amber"
-                    }`}
+                    className={`block rounded-lg px-3 py-3 font-display text-sm font-semibold ${link.isCta ? "text-amber" : "text-bone/90 hover:text-amber"}`}
                   >
                     {link.label}
                   </a>
