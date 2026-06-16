@@ -7,15 +7,7 @@ interface MagneticButtonProps {
   className?: string;
 }
 
-/**
- * A button that subtly follows the cursor within its bounds ("magnetic" hover)
- * and renders a soft amber glow underneath. Resets with a spring on mouse leave.
- */
-export default function MagneticButton({
-  href,
-  children,
-  className = "",
-}: MagneticButtonProps) {
+export default function MagneticButton({ href, children, className = "" }: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -25,10 +17,8 @@ export default function MagneticButton({
   const handleMouseMove = (event: MouseEvent<HTMLAnchorElement>) => {
     const bounds = ref.current?.getBoundingClientRect();
     if (!bounds) return;
-    const relX = event.clientX - bounds.left - bounds.width / 2;
-    const relY = event.clientY - bounds.top - bounds.height / 2;
-    x.set(relX * 0.35);
-    y.set(relY * 0.35);
+    x.set((event.clientX - bounds.left - bounds.width / 2) * 0.35);
+    y.set((event.clientY - bounds.top - bounds.height / 2) * 0.35);
   };
 
   const handleMouseLeave = () => {
@@ -50,7 +40,6 @@ export default function MagneticButton({
       <span className="relative z-10">{children}</span>
       <motion.span
         className="relative z-10 inline-block"
-        initial={{ x: 0 }}
         whileHover={{ x: 4 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         aria-hidden="true"
