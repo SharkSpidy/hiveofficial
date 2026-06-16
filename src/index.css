@@ -56,3 +56,10 @@
     scroll-behavior: auto !important;
   }
 }
+
+@media (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
