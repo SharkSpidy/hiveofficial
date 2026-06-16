@@ -6,30 +6,17 @@ const HEADLINE_WORDS = ["BUILD.", "BREAK.", "REPEAT."];
 
 const containerVariants: Variants = {
   hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.16,
-      delayChildren: 0.3,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.16, delayChildren: 0.3 } },
 };
 
 const wordVariants: Variants = {
   hidden: { y: "100%", opacity: 0, skewY: 6 },
-  visible: {
-    y: "0%",
-    opacity: 1,
-    skewY: 0,
-    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
-  },
+  visible: { y: "0%", opacity: 1, skewY: 0, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export default function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative flex min-h-screen items-center overflow-hidden bg-ink pt-28"
-    >
+    <section id="hero" className="relative flex min-h-screen items-center overflow-hidden bg-ink pt-28">
       <div className="pointer-events-none absolute inset-0">
         <HexGrid />
         <div className="absolute inset-0 bg-amber-glow" />
@@ -55,9 +42,7 @@ export default function Hero() {
         >
           {HEADLINE_WORDS.map((word) => (
             <span key={word} className="block overflow-hidden">
-              <motion.span variants={wordVariants} className="inline-block">
-                {word}
-              </motion.span>
+              <motion.span variants={wordVariants} className="inline-block">{word}</motion.span>
             </span>
           ))}
         </motion.h1>
@@ -68,8 +53,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 1.05, ease: "easeOut" }}
           className="mt-8 max-w-xl font-body text-base text-mute sm:text-lg"
         >
-          The ultimate student community for builders, hackers, and
-          creators. Stop learning in isolation. Start shipping together.
+          The ultimate student community for builders, hackers, and creators. Stop learning in isolation. Start shipping together.
         </motion.p>
 
         <motion.div
