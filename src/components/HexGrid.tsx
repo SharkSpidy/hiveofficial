@@ -22,7 +22,6 @@ function buildHexPoints(cx: number, cy: number, r: number): string {
   }).join(" ");
 }
 
-/** Deterministic pointy-top hex grid — same texture every render, no randomness drift. */
 function buildGrid(width: number, height: number, r: number): HexCell[] {
   const cells: HexCell[] = [];
   const hStep = Math.sqrt(3) * r;
@@ -69,21 +68,10 @@ export default function HexGrid() {
             strokeWidth={1.2}
             initial={{ opacity: 0.12 }}
             animate={{ opacity: [0.12, 0.65, 0.12] }}
-            transition={{
-              duration: 4.5,
-              repeat: Infinity,
-              delay: cell.delay,
-              ease: "easeInOut",
-            }}
+            transition={{ duration: 4.5, repeat: Infinity, delay: cell.delay, ease: "easeInOut" }}
           />
         ) : (
-          <polygon
-            key={idx}
-            points={cell.points}
-            fill="none"
-            stroke="rgba(255,255,255,0.045)"
-            strokeWidth={1}
-          />
+          <polygon key={idx} points={cell.points} fill="none" stroke="rgba(255,255,255,0.045)" strokeWidth={1} />
         ),
       )}
     </svg>
